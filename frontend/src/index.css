@@ -1,0 +1,742 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #F2F9FF;
+    color: #06183D;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+/* ============================================================
+   ATMOSPHERIC BACKGROUND
+   ============================================================ */
+
+.flowing-bg {
+  position: relative;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(141, 217, 255, 0.45) 0%, transparent 45%),
+    radial-gradient(circle at 88% 12%, rgba(0, 207, 255, 0.28) 0%, transparent 40%),
+    radial-gradient(circle at 50% 88%, rgba(0, 140, 255, 0.20) 0%, transparent 50%),
+    radial-gradient(circle at 75% 65%, rgba(7, 89, 217, 0.12) 0%, transparent 45%),
+    linear-gradient(180deg, #FFFFFF 0%, #F0F6FD 100%);
+  min-height: 100vh;
+}
+
+/* Ambient Floating Glow Elements */
+
+.ambient-glow-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(65px);
+  pointer-events: none;
+  z-index: 0;
+  animation: floatOrb 14s ease-in-out infinite alternate;
+}
+
+.ambient-glow-cyan {
+  background: radial-gradient(
+    circle,
+    rgba(0, 207, 255, 0.35) 0%,
+    rgba(0, 140, 255, 0.15) 60%,
+    transparent 80%
+  );
+}
+
+.ambient-glow-blue {
+  background: radial-gradient(
+    circle,
+    rgba(7, 89, 217, 0.3) 0%,
+    rgba(0, 140, 255, 0.15) 60%,
+    transparent 80%
+  );
+}
+
+@keyframes floatOrb {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(30px, -25px) scale(1.08);
+  }
+
+  100% {
+    transform: translate(-25px, 20px) scale(0.95);
+  }
+}
+
+/* ============================================================
+   SUPREME ULTRA GLASS
+   ============================================================ */
+
+.ultra-glass {
+  background: rgba(255, 255, 255, 0.76);
+  backdrop-filter: blur(28px) saturate(185%);
+  -webkit-backdrop-filter: blur(28px) saturate(185%);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 16px 40px -12px rgba(0, 140, 255, 0.12),
+    0 4px 16px -2px rgba(6, 24, 61, 0.04),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+.ultra-glass-card {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.88) 0%,
+    rgba(242, 249, 255, 0.72) 100%
+  );
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border: 1px solid rgba(216, 236, 255, 0.9);
+  box-shadow:
+    0 14px 34px -10px rgba(0, 140, 255, 0.12),
+    0 4px 14px 0 rgba(6, 24, 61, 0.03),
+    inset 0 1px 2px 0 rgba(255, 255, 255, 1);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ultra-glass-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(0, 207, 255, 0.7);
+  box-shadow:
+    0 22px 48px -12px rgba(7, 89, 217, 0.22),
+    0 8px 24px -4px rgba(0, 207, 255, 0.18),
+    inset 0 1px 2px 0 rgba(255, 255, 255, 1);
+}
+
+.ultra-glass-dark {
+  background: linear-gradient(
+    145deg,
+    rgba(6, 24, 61, 0.88) 0%,
+    rgba(3, 12, 32, 0.94) 100%
+  );
+  backdrop-filter: blur(30px) saturate(200%);
+  -webkit-backdrop-filter: blur(30px) saturate(200%);
+  border: 1px solid rgba(0, 207, 255, 0.35);
+  box-shadow:
+    0 24px 60px -12px rgba(0, 0, 0, 0.55),
+    0 0 40px -5px rgba(0, 140, 255, 0.22),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* ============================================================
+   MESSAGE BUBBLES
+   ============================================================ */
+
+.user-bubble-glass {
+  background: linear-gradient(
+    135deg,
+    #0759D9 0%,
+    #008CFF 60%,
+    #00CFFF 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow:
+    0 12px 28px -6px rgba(7, 89, 217, 0.35),
+    0 4px 12px 0 rgba(0, 140, 255, 0.2),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.miva-bubble-glass {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.94) 0%,
+    rgba(244, 250, 255, 0.85) 100%
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(216, 236, 255, 0.95);
+  box-shadow:
+    0 12px 30px -8px rgba(0, 140, 255, 0.10),
+    0 2px 8px 0 rgba(6, 24, 61, 0.03),
+    inset 0 1px 2px 0 rgba(255, 255, 255, 1);
+}
+
+/* ============================================================
+   INPUT GLASS
+   ============================================================ */
+
+.input-glass-pill {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1.5px solid rgba(216, 236, 255, 0.95);
+  box-shadow:
+    0 16px 42px -10px rgba(7, 89, 217, 0.14),
+    0 4px 16px 0 rgba(0, 140, 255, 0.06),
+    inset 0 1px 2px 0 rgba(255, 255, 255, 1);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.input-glass-pill:focus-within {
+  border-color: #008CFF;
+  box-shadow:
+    0 20px 48px -8px rgba(0, 140, 255, 0.25),
+    0 0 24px 0 rgba(0, 207, 255, 0.35),
+    inset 0 1px 2px 0 rgba(255, 255, 255, 1);
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+   LUMINOUS GLOWS
+   ============================================================ */
+
+.cyan-glow {
+  box-shadow: 0 0 28px rgba(0, 207, 255, 0.45);
+}
+
+.blue-glow {
+  box-shadow: 0 0 28px rgba(7, 89, 217, 0.4);
+}
+
+/* ============================================================
+   DOT WAVE
+   ============================================================ */
+
+@keyframes waveDot {
+  0%,
+  80%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+
+  40% {
+    transform: translateY(-9px);
+    opacity: 1;
+    box-shadow: 0 4px 12px rgba(0, 207, 255, 0.6);
+  }
+}
+
+.dot-wave-1 {
+  animation: waveDot 1.4s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+.dot-wave-2 {
+  animation: waveDot 1.4s cubic-bezier(0.45, 0.05, 0.55, 0.95) 0.2s infinite;
+}
+
+.dot-wave-3 {
+  animation: waveDot 1.4s cubic-bezier(0.45, 0.05, 0.55, 0.95) 0.4s infinite;
+}
+
+/* ============================================================
+   TYPEWRITER
+   ============================================================ */
+
+@keyframes blinkCursor {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 2.5px;
+  height: 1.1em;
+  background-color: #008CFF;
+  margin-left: 2px;
+  vertical-align: -2px;
+  border-radius: 1px;
+  animation: blinkCursor 0.8s ease-in-out infinite;
+}
+
+/* ============================================================
+   MESSAGE ANIMATION
+   ============================================================ */
+
+@keyframes messageSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-message-slide {
+  animation: messageSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ============================================================
+   PREMIUM ANIMATION LAYER
+   ============================================================ */
+
+button,
+a,
+.ultra-glass-card,
+.glass-card {
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes premiumFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.99);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-page-in {
+  animation: premiumFadeUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes staggerIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-stagger-in {
+  animation: staggerIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ============================================================
+   BUTTON SHINE
+   ============================================================ */
+
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.55) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-20deg);
+  transition: left 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.btn-shine:hover::after {
+  left: 130%;
+}
+
+/* ============================================================
+   PRESS FEEDBACK
+   ============================================================ */
+
+.btn-press {
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-press:active {
+  transform: scale(0.96);
+}
+
+/* ============================================================
+   GLOW RING
+   ============================================================ */
+
+@keyframes glowPulseRing {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 207, 255, 0.35);
+  }
+
+  50% {
+    box-shadow: 0 0 0 8px rgba(0, 207, 255, 0);
+  }
+}
+
+.glow-ring {
+  animation: glowPulseRing 2.4s ease-in-out infinite;
+}
+
+/* ============================================================
+   GRADIENT TEXT
+   ============================================================ */
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.text-gradient-flow {
+  background: linear-gradient(
+    90deg,
+    #0759D9,
+    #00CFFF,
+    #008CFF,
+    #0759D9
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientFlow 6s ease infinite;
+}
+
+/* ============================================================
+   ACTIVE INDICATOR
+   ============================================================ */
+
+@keyframes indicatorGrow {
+  0% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+.active-indicator-bar {
+  animation: indicatorGrow 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transform-origin: center;
+}
+
+/* ============================================================
+   PREMIUM HOVER
+   ============================================================ */
+
+.premium-hover-lift {
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.premium-hover-lift:hover {
+  transform: translateY(-4px);
+}
+
+/* ============================================================
+   IMAGE REVEAL
+   ============================================================ */
+
+@keyframes imageReveal {
+  0% {
+    opacity: 0;
+    filter: blur(6px);
+  }
+
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+.animate-image-reveal {
+  animation: imageReveal 0.5s ease-out both;
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-page-in,
+  .animate-stagger-in,
+  .glow-ring,
+  .text-gradient-flow,
+  .animate-image-reveal,
+  .ambient-glow-orb {
+    animation: none !important;
+  }
+}
+
+/* ============================================================
+   CUSTOM SCROLLBAR
+   ============================================================ */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 140, 255, 0.22);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 140, 255, 0.5);
+}
+
+/* ============================================================
+   MIVA PREMIUM INDUSTRIAL LAYER
+   ============================================================ */
+
+.flowing-bg {
+  background:
+    linear-gradient(
+      rgba(255, 255, 255, 0.22) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(7, 89, 217, 0.035) 1px,
+      transparent 1px
+    ),
+    radial-gradient(
+      circle at 50% 14%,
+      rgba(0, 207, 255, 0.16) 0%,
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 84% 68%,
+      rgba(7, 89, 217, 0.10) 0%,
+      transparent 38%
+    ),
+    linear-gradient(
+      180deg,
+      #FBFDFF 0%,
+      #F1F7FD 100%
+    );
+
+  background-size:
+    48px 48px,
+    48px 48px,
+    auto,
+    auto,
+    auto;
+
+  background-position:
+    center,
+    center,
+    center,
+    center,
+    center;
+}
+
+.ultra-glass {
+  background: rgba(255, 255, 255, 0.84);
+
+  box-shadow:
+    0 20px 50px -18px rgba(7, 89, 217, 0.13),
+    0 4px 18px -5px rgba(6, 24, 61, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.98);
+}
+
+.ultra-glass-card {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.92),
+    rgba(246, 251, 255, 0.80)
+  );
+
+  border-color: rgba(205, 228, 249, 0.92);
+
+  box-shadow:
+    0 18px 42px -18px rgba(7, 89, 217, 0.16),
+    0 5px 16px -5px rgba(6, 24, 61, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.98);
+}
+
+.ultra-glass-card:hover {
+  transform: translateY(-4px);
+
+  border-color: rgba(0, 180, 245, 0.52);
+
+  box-shadow:
+    0 26px 54px -18px rgba(7, 89, 217, 0.20),
+    0 10px 28px -8px rgba(0, 207, 255, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+/* ============================================================
+   FINE TECHNICAL GRAIN
+   ============================================================ */
+
+.flowing-bg::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.22;
+
+  background-image:
+    radial-gradient(
+      rgba(6, 24, 61, 0.10) 0.55px,
+      transparent 0.55px
+    );
+
+  background-size: 7px 7px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.22),
+      transparent 72%
+    );
+}
+
+/* ============================================================
+   MIVA SIDEBAR LOGO
+   CLEAN • TRANSPARENT • NO SHADOW • NO GLOW
+   ============================================================ */
+
+/*
+   IMPORTANT:
+   Sidebar.jsx should use:
+
+   /assets/miva_logo_transparent.png
+
+   NOT:
+
+   /assets/miva-sidebar-logo.png
+*/
+
+.sidebar-logo {
+  width: 52px !important;
+  height: 52px !important;
+
+  display: block !important;
+
+  object-fit: contain !important;
+
+  background: transparent !important;
+
+  border: 0 !important;
+  border-radius: 0 !important;
+
+  box-shadow: none !important;
+  filter: none !important;
+  -webkit-filter: none !important;
+
+  text-shadow: none !important;
+}
+
+/* Logo image itself */
+
+.sidebar-logo img {
+  width: 100% !important;
+  height: 100% !important;
+
+  display: block !important;
+
+  object-fit: contain !important;
+
+  background: transparent !important;
+
+  border: 0 !important;
+  border-radius: 0 !important;
+
+  box-shadow: none !important;
+  filter: none !important;
+  -webkit-filter: none !important;
+
+  text-shadow: none !important;
+}
+
+/* ============================================================
+   SIDEBAR LOGO CONTAINER
+   ============================================================ */
+
+.sidebar-logo-container,
+.sidebar-logo-wrap,
+.sidebar-brand,
+.sidebar-header {
+  background: transparent !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+/* ============================================================
+   REMOVE LOGO PSEUDO EFFECTS
+   ============================================================ */
+
+.sidebar-logo::before,
+.sidebar-logo::after,
+.sidebar-logo-container::before,
+.sidebar-logo-container::after,
+.sidebar-logo-wrap::before,
+.sidebar-logo-wrap::after,
+.sidebar-brand::before,
+.sidebar-brand::after,
+.sidebar-header::before,
+.sidebar-header::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+/* ============================================================
+   DO NOT APPLY GLOW TO SIDEBAR LOGO
+   ============================================================ */
+
+.sidebar-logo.glow-ring,
+.sidebar-logo.cyan-glow,
+.sidebar-logo.blue-glow {
+  animation: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+/* ============================================================
+   SIDEBAR ITSELF
+   Keep sidebar clean — no logo shadow leaking from wrapper
+   ============================================================ */
+
+.sidebar {
+  box-shadow: none !important;
+}
+
+/* ============================================================
+   SAFETY OVERRIDE
+   Prevent generic logo rules from adding effects
+   ============================================================ */
+
+.sidebar .logo,
+.sidebar .logo img,
+.sidebar .brand,
+.sidebar .brand img {
+  filter: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+/* ============================================================
+   END
+   ============================================================ */
