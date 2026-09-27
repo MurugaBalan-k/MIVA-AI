@@ -75,10 +75,14 @@ if (fs.existsSync(frontendDist)) {
 }
 
 // Start Server
-app.listen(PORT, () => {
-  console.log(`====================================================`);
-  console.log(`  MIVA AI - Manufacturing Intelligence & Vision Assistant`);
-  console.log(`  L&T Shop-Floor Knowledge Partner`);
-  console.log(`  Server running on http://localhost:${PORT}`);
-  console.log(`====================================================`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`====================================================`);
+    console.log(`  MIVA AI - Manufacturing Intelligence & Vision Assistant`);
+    console.log(`  L&T Shop-Floor Knowledge Partner`);
+    console.log(`  Server running on http://localhost:${PORT}`);
+    console.log(`====================================================`);
+  });
+}
+
+module.exports = app;
