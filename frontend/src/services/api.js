@@ -1,7 +1,9 @@
 // MIVA AI API Client
 
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 export async function sendChatMessage({ message, chatId = 'default', language = 'en', userId = 'u-01', userName = 'Operator' }) {
-  const response = await fetch('/api/chat/message', {
+  const response = await fetch(`${API_BASE}/api/chat/message`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ message, chatId, language, userId, userName })
@@ -24,7 +26,7 @@ export async function analyzeEquipmentImage({ file, sampleId, query = '', langua
     formData.append('userId', userId);
     formData.append('chatId', chatId);
 
-    const response = await fetch('/api/vision/analyze', {
+    const response = await fetch(`${API_BASE}/api/vision/analyze`, {
       method: 'POST',
       body: formData
     });
@@ -32,7 +34,7 @@ export async function analyzeEquipmentImage({ file, sampleId, query = '', langua
     if (!response.ok) throw new Error('Failed to analyze equipment image.');
     return response.json();
   } else {
-    const response = await fetch('/api/vision/analyze', {
+    const response = await fetch(`${API_BASE}/api/vision/analyze`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ sampleId, query, language, userId, chatId })
@@ -44,14 +46,14 @@ export async function analyzeEquipmentImage({ file, sampleId, query = '', langua
 }
 
 export async function fetchSampleImages() {
-  const res = await fetch('/api/vision/samples');
+  const res = await fetch(`${API_BASE}/api/vision/samples`);
   if (!res.ok) return [];
   const data = await res.json();
   return data.samples || [];
 }
 
 export async function fetchProductionLines() {
-  const res = await fetch('/api/knowledge/lines');
+  const res = await fetch(`${API_BASE}/api/knowledge/lines`);
   if (!res.ok) return [];
   const data = await res.json();
   return data.lines || [];
@@ -59,93 +61,100 @@ export async function fetchProductionLines() {
 
 export async function fetchGovernedDocuments(filter = {}) {
   const queryParams = new URLSearchParams(filter).toString();
-  const res = await fetch(`/api/knowledge/documents?${queryParams}`);
+  const res = await fetch(`${API_BASE}/api/knowledge/documents?${queryParams}`);
   if (!res.ok) return [];
   const data = await res.json();
   return data.documents || [];
 }
 
 export async function uploadGovernedPDF(formData) {
-  const res = await fetch('/api/knowledge/upload', {
+  const res = await fetch(`${API_BASE}/api/knowledge/upload`, {
     method: 'POST',
     body: formData
   });
+
   if (!res.ok) {
     const err = await res.json().catch(() => ({}));
     throw new Error(err.error || 'Upload failed');
   }
+
   return res.json();
 }
 
 export async function updateDocumentStatus(docId, status) {
-  const res = await fetch(`/api/knowledge/documents/${docId}/status`, {
+  const res = await fetch(`${API_BASE}/api/knowledge/documents/${docId}/status`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ status })
   });
+
   return res.json();
 }
 
 export async function fetchRiskAlerts() {
-  const res = await fetch('/api/alerts');
+  const res = await fetch(`${API_BASE}/api/alerts`);
   if (!res.ok) return [];
   const data = await res.json();
   return data.alerts || [];
 }
 
 export async function updateRiskAlertStatus(alertId, status, resolvedBy, resolutionNotes) {
-  const res = await fetch(`/api/alerts/${alertId}/status`, {
+  const res = await fetch(`${API_BASE}/api/alerts/${alertId}/status`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ status, resolvedBy, resolutionNotes })
   });
+
   return res.json();
 }
 
 export async function fetchWorkInstructions() {
-  const res = await fetch('/api/work-instructions');
+  const res = await fetch(`${API_BASE}/api/work-instructions`);
   if (!res.ok) return [];
   const data = await res.json();
   return data.workInstructions || [];
 }
 
 export async function reviewWorkInstruction(wiId, action, comments) {
-  const res = await fetch(`/api/work-instructions/${wiId}/review`, {
+  const res = await fetch(`${API_BASE}/api/work-instructions/${wiId}/review`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ action, comments })
   });
+
   return res.json();
 }
 
 export async function runBenchmarkEvaluation() {
-  const res = await fetch('/api/evaluation/run', {
+  const res = await fetch(`${API_BASE}/api/evaluation/run`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' }
   });
+
   if (!res.ok) throw new Error('Benchmark failed');
   return res.json();
 }
 
 export async function fetchAuditLogs() {
-  const res = await fetch('/api/evaluation/audit-logs');
+  const res = await fetch(`${API_BASE}/api/evaluation/audit-logs`);
   if (!res.ok) return [];
   const data = await res.json();
   return data.logs || [];
 }
 
 export async function fetchDevelopers() {
-  const res = await fetch('/api/developers');
+  const res = await fetch(`${API_BASE}/api/developers`);
   if (!res.ok) return [];
   const data = await res.json();
   return data.developers || [];
 }
 
 export async function updateDeveloper(id, updates) {
-  const res = await fetch(`/api/developers/${id}`, {
+  const res = await fetch(`${API_BASE}/api/developers/${id}`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(updates)
   });
+
   return res.json();
 }

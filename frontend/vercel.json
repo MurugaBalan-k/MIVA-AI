@@ -1,8 +1,0 @@
-﻿{
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "https://miva-ai-api.vercel.app/api/$1"
-    }
-  ]
-}
