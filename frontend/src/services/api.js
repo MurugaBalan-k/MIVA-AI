@@ -1,6 +1,6 @@
 // MIVA AI API Client
 
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API_BASE = import.meta.env.VITE_API_URL || 'https://miva-ai-api.vercel.app';
 
 export async function sendChatMessage({ message, chatId = 'default', language = 'en', userId = 'u-01', userName = 'Operator' }) {
   const response = await fetch(`${API_BASE}/api/chat/message`, {
