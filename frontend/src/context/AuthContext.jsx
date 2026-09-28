@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }) => {
     setAuthSuccess('');
 
     try {
-      const res = await fetch('/api/auth/signup', {
+      const res = await fetch('https://miva-ai-gamma.vercel.app/api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ fullName, email, password, confirmPassword })
@@ -67,7 +67,7 @@ export const AuthProvider = ({ children }) => {
     setAuthError('');
 
     try {
-      const res = await fetch('/api/auth/login', {
+      fetch('https://miva-ai-gamma.vercel.app/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
@@ -104,7 +104,7 @@ export const AuthProvider = ({ children }) => {
     setAuthError('');
 
     try {
-      const res = await fetch('/api/auth/admin-login', {
+      fetch('https://miva-ai-gamma.vercel.app/api/auth/admin-login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ adminId, password })
@@ -136,7 +136,7 @@ export const AuthProvider = ({ children }) => {
 
     setIsLoading(true);
     try {
-      const res = await fetch('/api/auth/profile', {
+      fetch('https://miva-ai-gamma.vercel.app/api/auth/profile', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
